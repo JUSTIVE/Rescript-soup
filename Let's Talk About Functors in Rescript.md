@@ -25,7 +25,7 @@
 리스크립트는 이미 제너릭 타입의 개념을 가지고 있습니다.
 우리가 그들을 사용할 때에, 예를 들어 제너릭 콜렉션(`array<string>`,`array<int>`)이 있고, 다음과 같이 우리만의 제너릭 레코드를 만들 수 있습니다.
 
-```re
+```rescript
 type keyValuePair<'a,'b> = {
   name:'a,
   value:'b
@@ -36,7 +36,7 @@ type keyValuePair<'a,'b> = {
 우리는 이 제너릭 타입으로부터 무한한 구체적인 타입들을 만들 수 있습니다. 
 예를 들어, `string`과 `integer`를 받는 버전의 타입을 다음과 같이 인스턴스화 할 수 있습니다.
 
-```re
+```rescript
 type hundredsOfApples: keyValuePair<string,int>={
   name:"apple",
   value:480
@@ -44,14 +44,14 @@ type hundredsOfApples: keyValuePair<string,int>={
 ```
 또한 이 타입으로부터 다른 구체적인 타입을 만들 수 있습니다.
 
-```re
+```rescript
 type twoStrings = keyValuePair<string,string>
 ```
 
 그리고 기존에 존재하는 제너릭 타입으로부터 새 제너릭 타입을 만들 수 있습니다.
 아래는 오직 한 개의 타입 인자를 받습니다.
 
-```re
+```rescript
 type stringValuePair = keyValuePair<string,'a>
 ```
 
@@ -64,11 +64,11 @@ type stringValuePair = keyValuePair<string,'a>
 
 제너릭 타입을 함수에 넣고 제너릭 타입을 반환을 받을 수도 있습니다.
 예를 들어, 다음은 유효한 리스크립트 함수입니다.
-```re
+```rescript
 let extractValue: keyValuePair<'a,'b> => 'b = pair => pair.value
 ```
 이것도 마찬가지입니다.
-```re
+```rescript
 let valueIfName : (keyValuePair<string,'b>,string)=>option<'b> = (pair,nameToMatch)=> {
   if pair.name == nameToMatch {
     Some(pair.value)
@@ -82,7 +82,7 @@ let valueIfName : (keyValuePair<string,'b>,string)=>option<'b> = (pair,nameToMat
 
 리스크립트에서는 인자가 제너릭인 제너릭 함수를 다음과 같이 만들 수 있습니다.
 
-```re
+```rescript
 let showAndReturn: 'a => 'a = argument => {
   Js.log(argument)
   argument
